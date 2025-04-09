@@ -20,7 +20,7 @@ describe('DniController POST (e2e)', () => {
     await app.close();
   });
 
-  it('POST /dni/validate con DNI válido', async () => {
+  it('POST /dni/validate DNI with valid format', async () => {
     const res = await request(app.getHttpServer())
       .post('/dni/validate')
       .send({ dni: '12345678Z' })
@@ -32,10 +32,10 @@ describe('DniController POST (e2e)', () => {
     });
   });
 
-  it('POST /dni/validate con DNI malformado', async () => {
+  it('POST /dni/validate DNI with invalid format', async () => {
     const res = await request(app.getHttpServer())
       .post('/dni/validate')
-      .send({ dni: '1234A678' }) // formato incorrecto
+      .send({ dni: '1234A678' })
       .expect(400);
 
     expect(res.body.message[0]).toMatch(/DNI with invalid format/i);

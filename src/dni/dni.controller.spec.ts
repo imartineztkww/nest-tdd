@@ -26,7 +26,7 @@ describe('DniController', () => {
     expect(controller).toBeDefined();
   });
 
-  it('debería devolver { dni, isValid:true } cuando se valida un DNI', () => {
+  it('should return { dni, isValid:true } with a valid DNI', () => {
     dniServiceMock.isValid.mockReturnValue(true);
     const result = controller.validate({ dni: '12345678Z' });
 
@@ -41,7 +41,7 @@ describe('DniController', () => {
     });
   });
 
-  it('debería devolver { dni, isValid:false } cuando se valida un DNI erroneo', () => {
+  it('should return { dni, isValid:false } with an invalid DNI', () => {
     dniServiceMock.isValid.mockReturnValue(false);
 
     const result = controller.validate({ dni: '12345678A' });
